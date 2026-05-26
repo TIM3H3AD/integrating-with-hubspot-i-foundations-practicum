@@ -4,9 +4,8 @@ This repository is for the Integrating With HubSpot I: Foundations course. This 
 
 To read the full directions, please go to the [practicum instructions](https://app.hubspot.com/academy/l/tracks/1092124/1093824/5493?language=en).
 
-**HubSpot developer test account custom objects URL:** https://app.hubspot.com/contacts/51492116/objects/${custom-object-id}/views/all/list
+**HubSpot developer test account custom objects URL:** https://app.hubspot.com/contacts/51492116/objects/2-63142114/views/all/list
 
-Replace `${custom-object-id}` with the custom object ID after the custom object is created in the developer test account.
 
 ___
 ## Tips:
