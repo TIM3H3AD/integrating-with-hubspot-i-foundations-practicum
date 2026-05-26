@@ -68,6 +68,30 @@ app.post('/update-cobj', async (req, res) => {
     }
 });
 
+app.post('/update-cobj/:id', async (req, res) => {
+    const extraRecord = {
+        properties: {
+            extra_offerings: req.body.name,
+            thing_id: req.body.thing_id,
+            creator: req.body.user_id,
+            ownership_id: req.body.ownership_id
+        }
+    };
+
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        await axios.patch(`${HUBSPOT_OBJECTS_URL}/${req.params.id}`, extraRecord, { headers });
+        res.redirect('/');
+    } catch (error) {
+        console.error(error.response?.data || error.message);
+        res.status(500).send('Unable to edit Extra record in HubSpot.');
+    }
+});
+
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
 

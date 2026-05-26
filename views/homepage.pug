@@ -9,7 +9,9 @@ html
             section.hero-panel
                 p.kicker HubSpot Custom Object Sync
                 h1 Pinball Extras
-                p These records are loaded from the HubSpot Extra custom object.
+                p These records are loaded from the HubSpot Extra custom object. 
+                p Click + to edit or the eye to open Pinball links.
+
                 a.button-link(href="/update-cobj") Add to this table
 
             section.table-panel
@@ -25,10 +27,48 @@ html
                         tbody
                             each extra in data
                                 tr
-                                    td #{extra.properties.extra_offerings || 'Untitled Extra'}
+                                    td.name-cell
+                                        span.record-title #{extra.properties.extra_offerings || 'Untitled Extra'}
+                                        a.edit-toggle(href="#edit-" + extra.id aria-label="Edit this Extra") +
+                                        a.view-toggle(href="#view-" + extra.id aria-label="View Pinball links") 👁
                                     td #{extra.properties.thing_id || '-'}
                                     td #{extra.properties.creator || '-'}
                                     td #{extra.properties.ownership_id || '-'}
                                     td #{extra.id}
+
+                    each extra in data
+                        .view-overlay(id="view-" + extra.id)
+                            .edit-card.link-card
+                                a.overlay-close(href="#" aria-label="Close link dialog") x
+                                p.kicker Pinball Links
+                                h2 #{extra.properties.extra_offerings || 'Untitled Extra'}
+                                ul.link-list
+                                    li
+                                        a(target="_blank" rel="noopener" href="https://313.cash/things/" + extra.properties.thing_id) Thing / #{extra.properties.thing_id || '-'}
+                                    li
+                                        a(target="_blank" rel="noopener" href="https://313.cash/ownerships/" + extra.properties.ownership_id) Ownership / #{extra.properties.ownership_id || '-'}
+                                    li
+                                        a(target="_blank" rel="noopener" href="https://313.cash/users/" + extra.properties.creator) User / #{extra.properties.creator || '-'}
+
+                    each extra in data
+                        .edit-overlay(id="edit-" + extra.id)
+                            .edit-card
+                                a.overlay-close(href="#" aria-label="Close edit form") x
+                                p.kicker Edit Extra
+                                h2 #{extra.properties.extra_offerings || 'Untitled Extra'}
+                                form(action="/update-cobj/" + extra.id method="POST")
+                                    label(for="name-" + extra.id) Name
+                                    input(type="text" id="name-" + extra.id name="name" value=extra.properties.extra_offerings required)
+
+                                    label(for="thing-id-" + extra.id) Thing ID
+                                    input(type="number" id="thing-id-" + extra.id name="thing_id" value=extra.properties.thing_id required)
+
+                                    label(for="user-id-" + extra.id) User ID
+                                    input(type="number" id="user-id-" + extra.id name="user_id" value=extra.properties.creator required)
+
+                                    label(for="ownership-id-" + extra.id) Ownership ID
+                                    input(type="number" id="ownership-id-" + extra.id name="ownership_id" value=extra.properties.ownership_id required)
+
+                                    input(type="submit" value="Save Extra")
                 else
                     p.empty-state No Extra records found yet.

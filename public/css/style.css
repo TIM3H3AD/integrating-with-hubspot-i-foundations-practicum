@@ -207,6 +207,125 @@ input[type="number"] {
     box-shadow: 6px 6px 0 var(--shadow);
 }
 
+.name-cell {
+    min-width: 13rem;
+}
+
+.record-title {
+    display: inline-block;
+    max-width: 16rem;
+    font-weight: 900;
+}
+
+.edit-toggle,
+.view-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 1.55rem;
+    height: 1.55rem;
+    margin-left: .55rem;
+    color: var(--ink);
+    background: var(--pink);
+    border: 3px solid var(--ink);
+    font-weight: 900;
+    line-height: 1;
+    box-shadow: 3px 3px 0 var(--cyan);
+}
+
+.edit-toggle:hover,
+.view-toggle:hover {
+    background: var(--lime);
+    box-shadow: 3px 3px 0 var(--pink);
+}
+
+.edit-overlay,
+.view-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.08) 0 1px, transparent 1px 5px),
+        rgba(5, 5, 8, .88);
+}
+
+.edit-overlay:target,
+.view-overlay:target {
+    display: flex;
+}
+
+.edit-card {
+    position: relative;
+    width: min(640px, 100%);
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding: clamp(1rem, 4vw, 2rem);
+    color: var(--paper);
+    background: var(--panel);
+    border: 4px solid var(--paper);
+    box-shadow: 10px 10px 0 var(--shadow), inset 0 0 0 4px var(--panel-2);
+}
+
+.edit-card h2 {
+    margin: .25rem 3rem 1rem 0;
+    color: var(--lime);
+    font-size: clamp(1.5rem, 5vw, 2.75rem);
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 var(--shadow), 6px 6px 0 rgba(255, 79, 163, .55);
+}
+
+.overlay-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--ink);
+    background: var(--gold);
+    border: 3px solid var(--paper);
+    font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--pink);
+}
+
+.view-toggle {
+    background: var(--cyan);
+    box-shadow: 3px 3px 0 var(--pink);
+}
+
+.link-card {
+    max-width: 560px;
+}
+
+.link-list {
+    display: grid;
+    gap: .85rem;
+    margin-top: 1rem;
+    list-style: none;
+}
+
+.link-list a {
+    display: block;
+    padding: .9rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    font-weight: 900;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--pink);
+}
+
+.link-list a:hover {
+    background: var(--lime);
+    box-shadow: 4px 4px 0 var(--cyan);
+}
+
 @media (max-width: 760px) {
     body {
         padding: 1rem;
