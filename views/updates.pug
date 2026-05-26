@@ -15,15 +15,12 @@ html
                 input#name(type="text" name="name" placeholder="Extra name" required)
 
                 label(for="thing_id") Thing ID
-                input#thing_id(type="text" name="thing_id" placeholder="313.cash thing ID" required)
+                input#thing_id(type="number" name="thing_id" placeholder="313.cash thing ID" required)
 
-                label(for="creator") Creator
-                input#creator(type="text" name="creator" placeholder="Creator alias or ID" required)
-
-                label(for="owner") Owner
-                input#owner(type="text" name="owner" placeholder="Current owner alias or ID" required)
+                label(for="user_id") User ID
+                input#user_id(type="number" name="user_id" placeholder="Pinball user ID" required)
 
                 label(for="ownership_id") Ownership ID
-                input#ownership_id(type="text" name="ownership_id" placeholder="Pinball ownership ID" required)
+                input#ownership_id(type="number" name="ownership_id" placeholder="Pinball ownership ID" required)
 
                 input(type="submit" value="Create Extra")
