@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        main.app-shell
+            section.hero-panel
+                p.kicker HubSpot Custom Object Sync
+                h1 Pinball Extras
+                p These records are loaded from the HubSpot Extra custom object.
+                a.button-link(href="/update-cobj") Add to this table
+
+            section.table-panel
+                if data && data.length
+                    table.pixel-table
+                        thead
+                            tr
+                                th Name
+                                th Thing ID
+                                th User ID
+                                th Ownership ID
+                                th HubSpot Record ID
+                        tbody
+                            each extra in data
+                                tr
+                                    td #{extra.properties.extra_offerings || 'Untitled Extra'}
+                                    td #{extra.properties.thing_id || '-'}
+                                    td #{extra.properties.creator || '-'}
+                                    td #{extra.properties.ownership_id || '-'}
+                                    td #{extra.id}
+                else
+                    p.empty-state No Extra records found yet.
